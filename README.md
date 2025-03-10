@@ -9,20 +9,19 @@ ShadowScan, dosyalarda, URL'lerde ve dizinlerde **hassas bilgileri** (API anahta
 
 ✅ Dosya, URL ve dizin bazlı tarama
 
-✅ API anahtarları, şifreler, JWT, IP adresleri gibi hassas verileri bulma
-
-✅ Güvenlik başlıklarını kontrol etme (CSP, HSTS, XSS korumaları vb.)
-
-✅ Çoklu iş parçacığı (thread) desteği ile hızlı tarama
-
-✅ Tespit edilen bulguları dosyaya kaydetme
+ ✅ API anahtarları, şifreler, JWT, IP adresleri gibi hassas verileri bulma
+ 
+ ✅ Güvenlik başlıklarını kontrol etme (CSP, HSTS, XSS korumaları vb.)
+ 
+ ✅ Çoklu iş parçacığı (thread) desteği ile hızlı tarama
+ 
+ ✅ Tespit edilen bulguları dosyaya kaydetme
 
 
 ## **Kurulum**
 
-Projeyi yerel ortamınıza klonlamak ve gerekli bağımlılıkları kurmak için aşağıdaki adımları takip edin:
-
-```bash
+```
+bash
 git clone https://github.com/kullanici/shadowscan.git  
 cd shadowscan  
 python3 -m venv venv  
@@ -34,29 +33,32 @@ pip install -e .
 
 ### **1. Dosya Taraması**
 
-```bash
+```
+bash
 shadowscan -f dosya.txt
 ```
 
 ### **2. URL Taraması**
 
-```bash
+```
+bash
 shadowscan -u "https://example.com"
 ```
 
 ### **3. Dizin Taraması**
 
-```bash
+```
+bash
 shadowscan -d /path/to/directory
 ```
 
 ### **4. Sonuçları Dosyaya Kaydetme**
 
-```bash
+```
+bash
 shadowscan -f dosya.txt -o sonuçlar.txt
 ```
 
 ## **Geliştirici**
 
-**Nihat Bayram**
-# shadowScanV2.0
+👨‍💻 **Nihat Bayram**
