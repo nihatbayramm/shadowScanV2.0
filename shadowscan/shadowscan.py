@@ -10,6 +10,10 @@ from colorama import Fore, Style, init
 from datetime import datetime
 from tqdm import tqdm 
 import json
+from shadowscan.file_scanner import FileScanner
+from shadowscan.config import Config
+from shadowscan.logger import Logger
+from concurrent.futures import ThreadPoolExecutor
 
 init()
 
@@ -78,18 +82,21 @@ def scan_url(url, output_file=None):
     try:
         response = requests.get(url, timeout=CONFIG["timeout"], headers={"User-Agent": "ShadowScan"})
         headers = response.headers
-        content = response.text[:10000]  
+        content = response.text[:10000]  # İlk 10000 karakteri al
         findings = []
 
+        # Güvenlik başlıklarını kontrol et
         for header in SECURITY_HEADERS:
             if header not in headers:
                 findings.append(f"{Fore.RED}[!] {header} eksik{Fore.RESET}")
 
+        # Hassas bilgi desenlerini kontrol et
         for name, pattern in PATTERNS.items():
             matches = re.findall(pattern, content)
             if matches:
                 findings.append(f"{Fore.RED}[!] {name} bulundu: {matches}{Fore.RESET}")
 
+        # Tarama sonuçlarını göster
         print(f"{Fore.CYAN}Tarama Sonuçları ({url}):{Fore.RESET}")
         if findings:
             for finding in findings:
@@ -98,6 +105,7 @@ def scan_url(url, output_file=None):
             print(f"{Fore.GREEN}[+] Temel güvenlik başlıkları mevcut{Fore.RESET}")
         print(f"{Fore.GREEN}Başlıklar:{Fore.RESET} {headers}")
 
+        # Buluntuları log dosyasına yaz
         log_findings(findings, output_file, url)
     except requests.RequestException as e:
         print(f"{Fore.YELLOW}[!] URL tarama hatası: {e}{Fore.RESET}")
@@ -144,6 +152,10 @@ def print_banner():
     print(banner)
 
 def main():
+    config = Config()
+    logger = Logger()
+    scanner = FileScanner(config, logger)
+
     parser = argparse.ArgumentParser(description="ShadowScan - Hassas bilgi ve güvenlik tarayıcı")
     parser.add_argument("-f", "--file", help="Taranacak dosya yolu")
     parser.add_argument("-u", "--url", help="Taranacak URL")
@@ -165,7 +177,7 @@ def main():
     start_time = time.time()
     if args.file:
         print(f"{Fore.CYAN}Dosya tarama başlatılıyor...{Fore.RESET}")
-        scan_file(args.file, args.output)
+        scanner.scan_file(args.file, args.output)
     if args.url:
         print(f"{Fore.CYAN}URL tarama başlatılıyor...{Fore.RESET}")
         scan_url(args.url, args.output)
