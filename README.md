@@ -6,11 +6,17 @@ ShadowScan, dosyalarda, URL'lerde ve dizinlerde **hassas bilgileri** (API anahta
 
 ## **Özellikler**
 
+
 ✅ Dosya, URL ve dizin bazlı tarama
+
 ✅ API anahtarları, şifreler, JWT, IP adresleri gibi hassas verileri bulma
+
 ✅ Güvenlik başlıklarını kontrol etme (CSP, HSTS, XSS korumaları vb.)
+
 ✅ Çoklu iş parçacığı (thread) desteği ile hızlı tarama
+
 ✅ Tespit edilen bulguları dosyaya kaydetme
+
 
 ## **Kurulum**
 
@@ -52,5 +58,5 @@ shadowscan -f dosya.txt -o sonuçlar.txt
 
 ## **Geliştirici**
 
-👨‍�� **Nihat Bayram**
+**Nihat Bayram**
 # shadowScanV2.0
