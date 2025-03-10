@@ -6,16 +6,23 @@ ShadowScan, dosyalarda, URL'lerde ve dizinlerde **hassas bilgileri** (API anahta
 
 ## **Özellikler**
 
+
 ✅ Dosya, URL ve dizin bazlı tarama
+
  ✅ API anahtarları, şifreler, JWT, IP adresleri gibi hassas verileri bulma
+ 
  ✅ Güvenlik başlıklarını kontrol etme (CSP, HSTS, XSS korumaları vb.)
+ 
  ✅ Çoklu iş parçacığı (thread) desteği ile hızlı tarama
+ 
  ✅ Tespit edilen bulguları dosyaya kaydetme
+
 
 ## **Kurulum**
 
 ```
-bashCopyEditgit clone https://github.com/kullanici/shadowscan.git  
+bash
+git clone https://github.com/kullanici/shadowscan.git  
 cd shadowscan  
 python3 -m venv venv  
 source venv/bin/activate  # (Windows için: venv\Scripts\activate)  
